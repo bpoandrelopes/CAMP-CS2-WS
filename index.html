@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>4º Camp CS2 Corujão · Meu Escritório Workstation</title>
+<style>
+:root{--bg:#0b0d14;--card:#141826;--line:#232a40;--tx:#e8ebf5;--mut:#8a93b2;--ac:#f5a623;--bl:#4c8dff;--ok:#2ecc71;--red:#ff4d4d;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:60px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.w{max-width:1000px;margin:0 auto;padding:0 16px 48px}
+.hero{padding:36px 0 20px;text-align:center;background:radial-gradient(600px 220px at 50% 0,#f5a62322,transparent)}
+.hero small{color:var(--ac);letter-spacing:.2em;font-weight:700}
+.hero h1{margin:6px 0;font-size:clamp(26px,6vw,46px);letter-spacing:.02em;text-transform:uppercase}
+.hero p{margin:4px 0;color:var(--mut)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:#0b0d14ee;border-bottom:1px solid var(--line);display:flex;gap:6px;overflow-x:auto;padding:8px 16px}
+nav a{color:var(--mut);text-decoration:none;padding:6px 12px;border-radius:8px;white-space:nowrap;font-weight:600}
+nav a:hover{color:var(--tx);background:var(--card)}
+h2{margin:32px 0 12px;font-size:18px;text-transform:uppercase;letter-spacing:.1em;border-left:4px solid var(--ac);padding-left:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.notice{background:#f5a62318;border:1px solid #f5a62355;color:#ffd48a;border-radius:10px;padding:10px 14px;margin:14px 0;text-align:center}
+.champ{background:linear-gradient(135deg,#f5a62333,#4c8dff22);border:1px solid var(--ac);border-radius:14px;text-align:center;padding:22px;margin:18px 0}
+.champ b{font-size:28px;display:block;margin:4px 0}
+.streams{display:flex;flex-wrap:wrap;gap:10px}
+.sb{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:10px;color:#fff;text-decoration:none;font-weight:700}
+.sb.yt{background:#e62117}.sb.tw{background:#7c3aed}.sb.x{background:#000;border:1px solid #444}.sb.ot{background:var(--bl)}
+.sb i{width:8px;height:8px;border-radius:50%;background:#fff;animation:p 1.2s infinite}@keyframes p{50%{opacity:.2}}
+table{width:100%;border-collapse:collapse}
+th,td{padding:8px 6px;text-align:center;border-bottom:1px solid var(--line)}
+th{color:var(--mut);font-size:12px;font-weight:600}td:nth-child(2),th:nth-child(2){text-align:left}
+tr.q td{background:#2ecc7112}tr.q td:first-child{box-shadow:inset 3px 0 var(--ok)}
+.pts{font-weight:800;color:var(--ac)}
+.leg{color:var(--mut);font-size:12px;margin-top:8px}
+.m{display:grid;grid-template-columns:62px 1fr auto 1fr;gap:8px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line)}
+.m:last-child{border:0}
+.m .t{color:var(--mut);font-size:12px;line-height:1.2}.m .t b{display:block;color:var(--tx);font-size:14px}
+.m .a{text-align:right}.m .sc{font-weight:800;font-size:18px;min-width:70px;text-align:center}
+.w1{color:var(--ok);font-weight:700}.pend{color:var(--mut);font-style:italic}
+.tag{font-size:10px;padding:2px 6px;border-radius:4px;background:var(--line);color:var(--mut);margin-left:4px}
+.live{background:var(--red);color:#fff;font-size:10px;padding:2px 6px;border-radius:4px;font-weight:800;animation:p 1.2s infinite}
+.bk{display:grid;gap:12px;grid-template-columns:1fr 1fr 1fr;align-items:center}
+@media(max-width:700px){.bk{grid-template-columns:1fr}.m{grid-template-columns:1fr auto 1fr}.m .t{grid-column:1/-1}}
+.bm{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.bm div{display:flex;justify-content:space-between;padding:9px 12px;gap:8px}.bm div+div{border-top:1px solid var(--line)}
+.bm h4{margin:0;padding:6px 12px;background:#0003;font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.1em}
+.adm{position:fixed;left:0;right:0;bottom:0;z-index:9;background:#1b2140;border-top:2px solid var(--ac);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.adm span{flex:1;color:var(--mut);min-width:140px}
+button{font:inherit;cursor:pointer;border:0;border-radius:8px;padding:8px 14px;font-weight:700;background:var(--line);color:var(--tx)}
+button.p{background:var(--ac);color:#111}button.d{background:#ff4d4d33;color:#ff9a9a;padding:6px 10px}
+input,textarea{font:inherit;background:#0b0d14;color:var(--tx);border:1px solid var(--line);border-radius:6px;padding:6px 8px;width:100%}
+input.n{width:52px;text-align:center;padding:6px 2px}input.tm{width:64px}
+.row{display:grid;grid-template-columns:110px 1fr 2fr auto;gap:6px;margin-bottom:6px}
+.logo{display:inline-flex;align-items:center;gap:12px;margin-bottom:14px}.lm{background:var(--ac);color:#111;font-weight:900;font-size:22px;letter-spacing:.06em;padding:10px 14px;border-radius:12px}.lt{text-align:left;font-weight:800;letter-spacing:.14em;font-size:13px;line-height:1.25}.sp{height:70px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script id="state" type="application/json">{"notice":"Sábado, 21/11 às 14:00 · Chaveamento e placar atualizados ao vivo nesta página.","streams":[],"teams":{"A":["Fofurín","ZS","DOT","MEI"],"B":["Loby","CS Team","M.E.W","Simples"]},"matches":[{"id":"a1","g":"A","ph":"R1 · Jogo 01","t":"14:00","a":0,"b":3},{"id":"a2","g":"A","ph":"R1 · Jogo 02","t":"14:00","a":1,"b":2},{"id":"b3","g":"B","ph":"R1 · Jogo 03","t":"14:00","a":0,"b":3},{"id":"b4","g":"B","ph":"R1 · Jogo 04","t":"14:00","a":1,"b":2},{"id":"a5","g":"A","ph":"R2 · Jogo 05","t":"15:00","a":3,"b":1},{"id":"a6","g":"A","ph":"R2 · Jogo 06","t":"15:00","a":0,"b":2},{"id":"b7","g":"B","ph":"R2 · Jogo 07","t":"15:00","a":1,"b":3},{"id":"b8","g":"B","ph":"R2 · Jogo 08","t":"15:00","a":0,"b":2},{"id":"a9","g":"A","ph":"R3 · Jogo 09","t":"16:00","a":0,"b":1},{"id":"a10","g":"A","ph":"R3 · Jogo 10","t":"16:00","a":3,"b":2},{"id":"b11","g":"B","ph":"R3 · Jogo 11","t":"16:00","a":0,"b":1},{"id":"b12","g":"B","ph":"R3 · Jogo 12","t":"16:00","a":3,"b":2},{"id":"s1","g":"P","ph":"R4 · Semifinal 1","t":"17:30","a":"A1","b":"B2"},{"id":"s2","g":"P","ph":"R4 · Semifinal 2","t":"17:30","a":"B1","b":"A2"},{"id":"f","g":"P","ph":"R5 · Grande Final","t":"19:00","a":"WS1","b":"WS2"}]}</script>
+<script>
+const S=JSON.parse(document.getElementById('state').textContent);
+let admin=false,editing=false,art=null,dirty=false,status='';
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const played=m=>m.sa!=null&&m.sb!=null;
+const gm=g=>S.matches.filter(m=>m.g===g);
+function table(g){
+  const r=S.teams[g].map((n,i)=>({i,n,j:0,v:0,d:0,rp:0,rc:0}));
+  gm(g).filter(played).forEach(m=>{const a=r[m.a],b=r[m.b];a.j++;b.j++;a.rp+=m.sa;a.rc+=m.sb;b.rp+=m.sb;b.rc+=m.sa;
+    if(m.sa>m.sb){a.v++;b.d++}else if(m.sb>m.sa){b.v++;a.d++}});
+  r.forEach(x=>{x.pts=x.v*3;x.sr=x.rp-x.rc});
+  return r.sort((x,y)=>y.pts-x.pts||y.sr-x.sr||y.rp-x.rp||x.i-y.i);
+}
+const done=g=>gm(g).every(played);
+function slot(s){
+  if(typeof s==='number')return null;
+  if(/^[AB][12]$/.test(s)){const g=s[0],k=+s[1];return done(g)?{n:table(g)[k-1].n}:{p:k+'º Série '+g}}
+  const m=S.matches.find(x=>x.id==='s'+s[2]);const w=win(m);return w?{n:w}:{p:'Vencedor Semi '+s[2]}
+}
+function names(m){
+  if(typeof m.a==='number')return[{n:S.teams[m.g][m.a]},{n:S.teams[m.g][m.b]}];
+  return[slot(m.a),slot(m.b)];
+}
+function win(m){if(!played(m)||m.sa===m.sb)return null;const[a,b]=names(m);const w=m.sa>m.sb?a:b;return w&&w.n||null}
+const nm=(x,w)=>x.n?`<span class="${w?'w1':''}">${esc(x.n)}</span>`:`<span class="pend">${esc(x.p)}</span>`;
+function plat(u){u=u.toLowerCase();return u.includes('youtu')?['yt','YouTube']:u.includes('twitch')?['tw','Twitch']:/x\.com|twitter/.test(u)?['x','X / Twitter']:['ot','Assistir']}
+const inp=(p,v,c,t)=>`<input class="${c||''}" data-p="${p}" value="${esc(v)}" ${t==='n'?'type="number" min="0" inputmode="numeric"':''}>`;
+
+function matchRow(m,i){
+  const[a,b]=names(m),w=win(m),tg=m.g==='P'?'':`<span class="tag">Série ${m.g}</span>`;
+  const sc=editing?`${inp(`matches.${i}.sa`,m.sa??'','n','n')} x ${inp(`matches.${i}.sb`,m.sb??'','n','n')}`:played(m)?`${m.sa} x ${m.sb}`:'–';
+  const t=editing?`<input class="tm" data-p="matches.${i}.t" value="${esc(m.t)}">`:`<b>${esc(m.t)}</b>`;
+  const lv=editing?`<label><input type="checkbox" data-p="matches.${i}.live" ${m.live?'checked':''} style="width:auto"> ao vivo</label>`:m.live&&!played(m)?'<span class="live">AO VIVO</span>':'';
+  return`<div class="m"><div class="t">${t}${esc(m.ph)}${tg} ${lv}</div><div class="a">${nm(a,w&&w===a.n)}</div><div class="sc">${sc}</div><div>${nm(b,w&&w===b.n)}</div></div>`;
+}
+function standings(g){
+  const r=table(g),d=done(g);
+  return`<div class="card"><table><tr><th>#</th><th>Série ${g}</th><th>J</th><th>V</th><th>D</th><th>SR</th><th>PTS</th></tr>${r.map((x,k)=>`<tr class="${k<2?'q':''}"><td>${k+1}</td><td>${editing?inp(`teams.${g}.${x.i}`,x.n):esc(x.n)+(d&&k===0?' 🏅':'')}</td><td>${x.j}</td><td>${x.v}</td><td>${x.d}</td><td>${x.sr>0?'+':''}${x.sr}</td><td class="pts">${x.pts}</td></tr>`).join('')}</table>
+  <div class="leg">🟩 Top 2 avançam à Copinha Workstation${d?' · 🏅 Medalha ao 1º colocado':''}</div></div>`;
+}
+function bm(m){const[a,b]=names(m),w=win(m);return`<div class="bm"><h4>${esc(m.ph)} · ${esc(m.t)}</h4><div>${nm(a,w&&w===a.n)}<b>${played(m)?m.sa:''}</b></div><div>${nm(b,w&&w===b.n)}<b>${played(m)?m.sb:''}</b></div></div>`}
+
+function render(){
+  const idx=m=>S.matches.indexOf(m);
+  const f=S.matches.find(m=>m.id==='f'),champ=win(f);
+  const st=S.streams.map(s=>{const[c,l]=plat(s.url);return`<a class="sb ${c}" href="${esc(s.url)}" target="_blank" rel="noopener"><i></i>${esc(s.label||l)}</a>`}).join('');
+  const stEd=S.streams.map((s,i)=>`<div class="row"><input data-p="streams.${i}.label" value="${esc(s.label)}" placeholder="Nome"><input data-p="streams.${i}.url" value="${esc(s.url)}" placeholder="https://..." style="grid-column:span 2"><button class="d" data-act="del" data-i="${i}">✕</button></div>`).join('');
+  const rounds=S.matches.filter(m=>m.g!=='P').sort((x,y)=>x.t.localeCompare(y.t));
+  document.getElementById('app').innerHTML=`
+  <div class="hero"><div class="logo"><span class="lm">M.E.W</span><span class="lt">MEU ESCRITÓRIO<br>WORKSTATION</span></div><br><small>🦉 CORUJÃO · LAN 5v5 · 8 EQUIPES</small><h1>4º Camp CS2<br>Meu Escritório Workstation</h1><p>Sábado, 21 de novembro de 2026 · 14:00 · Rua 25 de Março, 148, Centro, Caçador/SC</p></div>
+  <nav><a href="#live">Transmissão</a><a href="#class">Classificação</a><a href="#jogos">Jogos</a><a href="#copinha">Copinha</a><a href="#premios">Premiação</a></nav>
+  <div class="w">
+  ${editing?`<textarea data-p="notice" rows="2">${esc(S.notice)}</textarea>`:S.notice?`<div class="notice">${esc(S.notice)}</div>`:''}
+  ${champ?`<div class="champ">🏆<b>${esc(champ)}</b>Campeão do 4º Camp CS2 Corujão</div>`:''}
+  <h2 id="live">Transmissão ao vivo</h2>
+  <div class="card">${editing?stEd+'<button data-act="add">+ Adicionar link (YouTube, Twitch, X...)</button>':st||'<span class="pend">Os links das transmissões aparecerão aqui no dia do evento.</span>'}${editing?'':''}</div>
+  <h2 id="class">Classificação · Fase de grupos</h2>
+  <div class="grid">${standings('A')}${standings('B')}</div>
+  <div class="leg">Todos contra todos · vitória = 3 pts · desempate: saldo de rounds (SR), depois rounds pró.</div>
+  <h2 id="jogos">Partidas e horários</h2>
+  <div class="card" style="padding:0">${rounds.map(m=>matchRow(m,idx(m))).join('')}</div>
+  <h2 id="copinha">Copinha Workstation · Playoffs</h2>
+  <div class="bk"><div style="display:grid;gap:12px">${bm(S.matches[12])}${bm(S.matches[13])}</div><div style="text-align:center;color:var(--mut)">vencedores ➜</div>${bm(f)}</div>
+  ${editing?`<div class="card" style="padding:0;margin-top:12px">${S.matches.filter(m=>m.g==='P').map(m=>matchRow(m,idx(m))).join('')}</div>`:''}
+  <h2 id="premios">Premiação</h2>
+  <div class="grid"><div class="card">🏆 <b>Campeão do 4º Camp</b><br><span class="pend">Troféu + skin personalizada para cada jogador campeão</span></div><div class="card">🏅 <b>Vencedores das séries</b><br><span class="pend">Medalhas para o 1º de cada série (A e B)</span></div></div>
+  </div>
+  <div class="sp"></div>
+  ${admin?`<div class="adm"><span>${status||(editing?'Editando. Alterações só ficam públicas ao publicar.':'Modo administrador')}</span>${editing?'<button class="p" data-act="pub">'+(dirty?'Publicar alterações':'Publicado ✓')+'</button>':''}<button data-act="tog">${editing?'Sair da edição':'Editar'}</button></div>`:''}`;
+}
+const setp=(p,v)=>{const k=p.split('.');let o=S;for(let i=0;i<k.length-1;i++)o=o[k[i]];o[k.at(-1)]=v};
+document.addEventListener('change',e=>{const el=e.target,p=el.dataset.p;if(!p||!editing)return;
+  let v=el.type==='checkbox'?el.checked:el.value;
+  if(/\.(sa|sb)$/.test(p))v=v===''?null:Math.max(0,parseInt(v,10)||0);
+  setp(p,v);dirty=true;status='';render()});
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act;
+  if(a==='tog')editing=!editing;
+  if(a==='add'){S.streams.push({label:'',url:''});dirty=true}
+  if(a==='del'){S.streams.splice(+b.dataset.i,1);dirty=true}
+  if(a==='pub'&&art){
+    status='Publicando...';render();
+    try{const c=document.documentElement.cloneNode(true);c.querySelector('#app').innerHTML='';
+      c.querySelector('#state').textContent=JSON.stringify(S).replace(/</g,'\\u003c');
+      await art.publish('<!doctype html>\n'+c.outerHTML);dirty=false;status='Publicado!'}
+    catch(err){status=err&&err.code==='conflict'?'Outra versão foi publicada. Recarregando...':'Erro ao publicar: '+(err&&err.message||err)}
+  }
+  render()});
+render();
+(async()=>{try{const u=await claude.use('user');admin=!!(u&&u.canEdit());art=await claude.use('artifact');if(!art)admin=false;render()}catch(e){}})();
+</script>
+</body>
+</html>
