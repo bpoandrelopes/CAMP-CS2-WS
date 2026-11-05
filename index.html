@@ -51,24 +51,24 @@ button.p{background:var(--ac);color:#111}button.d{background:#ff4d4d33;color:#ff
 input,textarea{font:inherit;background:#0b0d14;color:var(--tx);border:1px solid var(--line);border-radius:6px;padding:6px 8px;width:100%}
 input.n{width:52px;text-align:center;padding:6px 2px}input.tm{width:64px}
 .row{display:grid;grid-template-columns:110px 1fr 2fr auto;gap:6px;margin-bottom:6px}
-.logo{display:inline-flex;align-items:center;gap:12px;margin-bottom:14px}.lm{background:var(--ac);color:#111;font-weight:900;font-size:22px;letter-spacing:.06em;padding:10px 14px;border-radius:12px}.lt{text-align:left;font-weight:800;letter-spacing:.14em;font-size:13px;line-height:1.25}.sp{height:70px}
+.logo{display:inline-flex;align-items:center;gap:12px;margin-bottom:14px}.lm{background:var(--ac);color:#111;font-weight:900;font-size:22px;letter-spacing:.06em;padding:10px 14px;border-radius:12px}.lt{text-align:left;font-weight:800;letter-spacing:.14em;font-size:13px;line-height:1.25}.tabs{display:flex;gap:8px;justify-content:center;padding:6px 16px 14px}.tabs button{padding:10px 18px;border-radius:10px}.tabs button.on{background:var(--ac);color:#111}.sp{height:70px}
 </style>
 </head>
 <body>
 <div id="app"></div>
-<script id="state" type="application/json">{"notice":"Sábado, 21/11 às 14:00 · Chaveamento e placar atualizados ao vivo nesta página.","streams":[],"teams":{"A":["Fofurín","ZS","DOT","MEI"],"B":["Loby","CS Team","M.E.W","Simples"]},"matches":[{"id":"a1","g":"A","ph":"R1 · Jogo 01","t":"14:00","a":0,"b":3},{"id":"a2","g":"A","ph":"R1 · Jogo 02","t":"14:00","a":1,"b":2},{"id":"b3","g":"B","ph":"R1 · Jogo 03","t":"14:00","a":0,"b":3},{"id":"b4","g":"B","ph":"R1 · Jogo 04","t":"14:00","a":1,"b":2},{"id":"a5","g":"A","ph":"R2 · Jogo 05","t":"15:00","a":3,"b":1},{"id":"a6","g":"A","ph":"R2 · Jogo 06","t":"15:00","a":0,"b":2},{"id":"b7","g":"B","ph":"R2 · Jogo 07","t":"15:00","a":1,"b":3},{"id":"b8","g":"B","ph":"R2 · Jogo 08","t":"15:00","a":0,"b":2},{"id":"a9","g":"A","ph":"R3 · Jogo 09","t":"16:00","a":0,"b":1},{"id":"a10","g":"A","ph":"R3 · Jogo 10","t":"16:00","a":3,"b":2},{"id":"b11","g":"B","ph":"R3 · Jogo 11","t":"16:00","a":0,"b":1},{"id":"b12","g":"B","ph":"R3 · Jogo 12","t":"16:00","a":3,"b":2},{"id":"s1","g":"P","ph":"R4 · Semifinal 1","t":"17:30","a":"A1","b":"B2"},{"id":"s2","g":"P","ph":"R4 · Semifinal 2","t":"17:30","a":"B1","b":"A2"},{"id":"f","g":"P","ph":"R5 · Grande Final","t":"19:00","a":"WS1","b":"WS2"}]}</script>
+<script id="state" type="application/json">{"notice":"Sábado, 21/11 às 14:00 · Chaveamento e placar atualizados ao vivo nesta página.","streams":[],"teams":{"A":["Fofurín","ZS","DOT","MEI"],"B":["Loby","CS Team","M.E.W","Simples"]},"matches":[{"id":"a1","g":"A","ph":"R1 · Jogo 01","t":"14:00","a":0,"b":3},{"id":"a2","g":"A","ph":"R1 · Jogo 02","t":"14:00","a":1,"b":2},{"id":"b3","g":"B","ph":"R1 · Jogo 03","t":"14:00","a":0,"b":3},{"id":"b4","g":"B","ph":"R1 · Jogo 04","t":"14:00","a":1,"b":2},{"id":"a5","g":"A","ph":"R2 · Jogo 05","t":"15:00","a":3,"b":1},{"id":"a6","g":"A","ph":"R2 · Jogo 06","t":"15:00","a":0,"b":2},{"id":"b7","g":"B","ph":"R2 · Jogo 07","t":"15:00","a":1,"b":3},{"id":"b8","g":"B","ph":"R2 · Jogo 08","t":"15:00","a":0,"b":2},{"id":"a9","g":"A","ph":"R3 · Jogo 09","t":"16:00","a":0,"b":1},{"id":"a10","g":"A","ph":"R3 · Jogo 10","t":"16:00","a":3,"b":2},{"id":"b11","g":"B","ph":"R3 · Jogo 11","t":"16:00","a":0,"b":1},{"id":"b12","g":"B","ph":"R3 · Jogo 12","t":"16:00","a":3,"b":2},{"id":"s1","g":"P","ph":"R4 · Semifinal 1","t":"17:30","a":"A1","b":"B2"},{"id":"s2","g":"P","ph":"R4 · Semifinal 2","t":"17:30","a":"B1","b":"A2"},{"id":"f","g":"P","ph":"R5 · Grande Final","t":"19:00","a":"WS1","b":"WS2"}],"camp":{"id":"c4","nome":"4º Camp"},"rank":{"camps":[],"players":[]}}</script>
 <script>
-let S=JSON.parse(document.getElementById('state').textContent);
+let S=fix(JSON.parse(document.getElementById('state').textContent)),view=location.hash==='#ranking'?'rank':'camp';
 let admin=false,editing=false,dirty=false,status='',wantAdmin=location.hash==='#admin';
 const DEFAULT_PW='b2168504eaa083516af1ce92e43cedb68c00ddf0ae2632c7c24f2b6090dd7597';
 const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const played=m=>m.sa!=null&&m.sb!=null;
 const gm=g=>S.matches.filter(m=>m.g===g);
 function table(g){
-  const r=S.teams[g].map((n,i)=>({i,n,j:0,v:0,d:0,rp:0,rc:0}));
+  const r=S.teams[g].map((n,i)=>({i,n,j:0,v:0,e:0,d:0,rp:0,rc:0}));
   gm(g).filter(played).forEach(m=>{const a=r[m.a],b=r[m.b];a.j++;b.j++;a.rp+=m.sa;a.rc+=m.sb;b.rp+=m.sb;b.rc+=m.sa;
-    if(m.sa>m.sb){a.v++;b.d++}else if(m.sb>m.sa){b.v++;a.d++}});
-  r.forEach(x=>{x.pts=x.v*3;x.sr=x.rp-x.rc});
+    if(m.sa>m.sb){a.v++;b.d++}else if(m.sb>m.sa){b.v++;a.d++}else{a.e++;b.e++}});
+  r.forEach(x=>{x.pts=x.v*3+x.e;x.sr=x.rp-x.rc});
   return r.sort((x,y)=>y.pts-x.pts||y.sr-x.sr||y.rp-x.rp||x.i-y.i);
 }
 const done=g=>gm(g).every(played);
@@ -95,11 +95,30 @@ function matchRow(m,i){
 }
 function standings(g){
   const r=table(g),d=done(g);
-  return`<div class="card"><table><tr><th>#</th><th>Série ${g}</th><th>J</th><th>V</th><th>D</th><th>SR</th><th>PTS</th></tr>${r.map((x,k)=>`<tr class="${k<2?'q':''}"><td>${k+1}</td><td>${editing?inp(`teams.${g}.${x.i}`,x.n):esc(x.n)+(d&&k===0?' 🏅':'')}</td><td>${x.j}</td><td>${x.v}</td><td>${x.d}</td><td>${x.sr>0?'+':''}${x.sr}</td><td class="pts">${x.pts}</td></tr>`).join('')}</table>
+  return`<div class="card"><table><tr><th>#</th><th>Série ${g}</th><th>J</th><th>V</th><th>E</th><th>D</th><th>SR</th><th>PTS</th></tr>${r.map((x,k)=>`<tr class="${k<2?'q':''}"><td>${k+1}</td><td>${editing?inp(`teams.${g}.${x.i}`,x.n):esc(x.n)+(d&&k===0?' 🏅':'')}</td><td>${x.j}</td><td>${x.v}</td><td>${x.e}</td><td>${x.d}</td><td>${x.sr>0?'+':''}${x.sr}</td><td class="pts">${x.pts}</td></tr>`).join('')}</table>
   <div class="leg">🟩 Top 2 avançam à Copinha Workstation${d?' · 🏅 Medalha ao 1º colocado':''}</div></div>`;
 }
 function bm(m){const[a,b]=names(m),w=win(m);return`<div class="bm"><h4>${esc(m.ph)} · ${esc(m.t)}</h4><div>${nm(a,w&&w===a.n)}<b>${played(m)?m.sa:''}</b></div><div>${nm(b,w&&w===b.n)}<b>${played(m)?m.sb:''}</b></div></div>`}
 
+
+function fix(o){o.rank=o.rank||{};o.rank.camps=o.rank.camps||[];o.rank.players=o.rank.players||[];o.camp=o.camp||{id:'c4',nome:'4º Camp'};return o}
+function campStats(){const t={};const add=(n,p,c)=>{const x=t[n]=t[n]||{j:0,v:0,e:0,d:0,rp:0,rc:0};x.j++;x.rp+=p;x.rc+=c;p>c?x.v++:p<c?x.d++:x.e++};
+  S.matches.filter(played).forEach(m=>{const[a,b]=names(m);if(a.n&&b.n){add(a.n,m.sa,m.sb);add(b.n,m.sb,m.sa)}});return t}
+function annual(){const t={};const mer=(n,s)=>{if(!n)return;const x=t[n]=t[n]||{j:0,v:0,e:0,d:0,rp:0,rc:0};for(const k in x)x[k]+=+s[k]||0};
+  S.rank.camps.forEach(c=>c.teams.forEach(s=>mer(s.n,s)));
+  if(!S.rank.camps.some(c=>c.id===S.camp.id)){const c=campStats();for(const n in c)mer(n,c[n])}
+  return Object.entries(t).map(([n,x])=>({n,...x,pts:x.v*3+x.e})).sort((a,b)=>b.pts-a.pts||(b.rp-b.rc)-(a.rp-a.rc)||b.rp-a.rp)}
+const kd=p=>p.d?p.k/p.d:p.k;
+function tabsHtml(){return`<div class="tabs"><button data-act="view" data-v="camp" class="${view==='camp'?'on':''}">${esc(S.camp.nome)}</button><button data-act="view" data-v="rank" class="${view==='rank'?'on':''}">🏆 Ranking Anual</button></div>`}
+function rankView(){
+  const A=annual(),P=S.rank.players.map((p,i)=>({...p,i})).sort((x,y)=>kd(y)-kd(x)||y.k-x.k);
+  const sg=n=>(n>0?'+':'')+n,live=S.rank.camps.some(c=>c.id===S.camp.id)?'':' Inclui o '+esc(S.camp.nome)+' em andamento.';
+  const teams=A.map((x,k)=>`<tr class="${k<3?'q':''}"><td>${k+1}</td><td>${esc(x.n)}</td><td>${x.j}</td><td>${x.v}</td><td>${x.e}</td><td>${x.d}</td><td>${x.rp}</td><td>${x.rc}</td><td>${sg(x.rp-x.rc)}</td><td class="pts">${x.pts}</td></tr>`).join('')||'<tr><td colspan="10" class="pend">Sem dados ainda.</td></tr>';
+  const pl=P.map((p,k)=>editing?`<tr><td>${k+1}</td><td>${inp(`rank.players.${p.i}.n`,p.n)}</td><td>${inp(`rank.players.${p.i}.t`,p.t)}</td><td>${inp(`rank.players.${p.i}.k`,p.k,'n','n')}</td><td>${inp(`rank.players.${p.i}.d`,p.d,'n','n')}</td><td>${kd(p).toFixed(2)}</td><td>${inp(`rank.players.${p.i}.m`,p.m,'n','n')}</td><td><button class="d" data-act="delplayer" data-i="${p.i}">✕</button></td></tr>`:`<tr class="${k<3?'q':''}"><td>${k+1}</td><td>${esc(p.n)}</td><td>${esc(p.t)}</td><td>${p.k}</td><td>${p.d}</td><td><b>${kd(p).toFixed(2)}</b></td><td>${p.m}</td></tr>`).join('')||'<tr><td colspan="8" class="pend">Sem dados ainda.</td></tr>';
+  const camps=S.rank.camps.map((c,i)=>`<div class="card" style="margin-top:10px"><div class="row" style="grid-template-columns:1fr auto"><input data-p="rank.camps.${i}.nome" value="${esc(c.nome)}"><button class="d" data-act="delcamp" data-i="${i}">Remover etapa</button></div><div style="overflow-x:auto"><table><tr><th>Equipe</th><th>J</th><th>V</th><th>E</th><th>D</th><th>RP</th><th>RC</th><th></th></tr>${c.teams.map((t,j)=>`<tr><td>${inp(`rank.camps.${i}.teams.${j}.n`,t.n)}</td>${['j','v','e','d','rp','rc'].map(f=>`<td>${inp(`rank.camps.${i}.teams.${j}.${f}`,t[f],'n','n')}</td>`).join('')}<td><button class="d" data-act="delteam" data-i="${i}" data-j="${j}">✕</button></td></tr>`).join('')}</table></div><button data-act="addteam" data-i="${i}">+ Equipe</button></div>`).join('');
+  return`<div class="w"><h2>Ranking anual · Equipes</h2><div class="card" style="overflow-x:auto"><table><tr><th>#</th><th>Equipe</th><th>J</th><th>V</th><th>E</th><th>D</th><th>RP</th><th>RC</th><th>SR</th><th>PTS</th></tr>${teams}</table><div class="leg">Vitória 3 · empate 1 · derrota 0 · RP/RC = soma dos rounds pró/contra · SR = saldo · desempate: saldo, depois rounds pró.${live}</div></div>
+  <h2>Ranking anual · Jogadores</h2><div class="card" style="overflow-x:auto"><table><tr><th>#</th><th>Jogador</th><th>Equipe</th><th>K</th><th>D</th><th>K/D</th><th>MVP</th>${editing?'<th></th>':''}</tr>${pl}</table><div class="leg">Ordenado por K/D, depois kills.</div></div>
+  ${editing?`<h2>Etapas do ano (admin)</h2><div class="streams"><button class="p" data-act="close">Lançar ${esc(S.camp.nome)} no ranking</button><button data-act="addcamp">+ Etapa anterior</button><button data-act="addplayer">+ Jogador</button></div><div class="leg">Use sempre o mesmo nome de equipe em todas as etapas. "Lançar" fixa o camp atual; depois disso ele deixa de contar ao vivo.</div>${camps}`:''}</div>`}
 function render(){
   if(admin&&dirty)try{localStorage.setItem('mewdraft',JSON.stringify(S))}catch(e){}
   const idx=m=>S.matches.indexOf(m);
@@ -109,7 +128,7 @@ function render(){
   const rounds=S.matches.filter(m=>m.g!=='P').sort((x,y)=>x.t.localeCompare(y.t));
   document.getElementById('app').innerHTML=`
   <div class="hero"><div class="logo"><span class="lm">M.E.W</span><span class="lt">MEU ESCRITÓRIO<br>WORKSTATION</span></div><br><small>🦉 CORUJÃO · LAN 5v5 · 8 EQUIPES</small><h1>4º Camp CS2<br>Meu Escritório Workstation</h1><p>Sábado, 21 de novembro de 2026 · 14:00 · Rua 25 de Março, 148, Centro, Caçador/SC</p></div>
-  <nav><a href="#live">Transmissão</a><a href="#class">Classificação</a><a href="#jogos">Jogos</a><a href="#copinha">Copinha</a><a href="#premios">Premiação</a></nav>
+  ${tabsHtml()}${view==='rank'?rankView():''}${view==='camp'?`<nav><a href="#live">Transmissão</a><a href="#class">Classificação</a><a href="#jogos">Jogos</a><a href="#copinha">Copinha</a><a href="#premios">Premiação</a></nav>
   <div class="w">
   ${editing?`<textarea data-p="notice" rows="2">${esc(S.notice)}</textarea>`:S.notice?`<div class="notice">${esc(S.notice)}</div>`:''}
   ${champ?`<div class="champ">🏆<b>${esc(champ)}</b>Campeão do 4º Camp CS2 Corujão</div>`:''}
@@ -117,7 +136,7 @@ function render(){
   <div class="card">${editing?stEd+'<button data-act="add">+ Adicionar link (YouTube, Twitch, X...)</button>':st||'<span class="pend">Os links das transmissões aparecerão aqui no dia do evento.</span>'}${editing?'':''}</div>
   <h2 id="class">Classificação · Fase de grupos</h2>
   <div class="grid">${standings('A')}${standings('B')}</div>
-  <div class="leg">Todos contra todos · vitória = 3 pts · desempate: saldo de rounds (SR), depois rounds pró.</div>
+  <div class="leg">Todos contra todos · vitória 3 · empate 1 · derrota 0 · desempate: saldo de rounds (SR), depois rounds pró.</div>
   <h2 id="jogos">Partidas e horários</h2>
   <div class="card" style="padding:0">${rounds.map(m=>matchRow(m,idx(m))).join('')}</div>
   <h2 id="copinha">Copinha Workstation · Playoffs</h2>
@@ -125,7 +144,7 @@ function render(){
   ${editing?`<div class="card" style="padding:0;margin-top:12px">${S.matches.filter(m=>m.g==='P').map(m=>matchRow(m,idx(m))).join('')}</div>`:''}
   <h2 id="premios">Premiação</h2>
   <div class="grid"><div class="card">🏆 <b>Campeão do 4º Camp</b><br><span class="pend">Troféu + skin personalizada para cada jogador campeão</span></div><div class="card">🏅 <b>Vencedores das séries</b><br><span class="pend">Medalhas para o 1º de cada série (A e B)</span></div></div>
-  </div>
+  </div>`:''}
   <div class="sp"></div>
   ${admin?`<div class="adm"><span>${status||(editing?'Editando (rascunho salvo neste navegador). Para publicar: Copiar dados e colar no dados.json do GitHub.':'Modo administrador')}</span>${editing?'<button class="p" data-act="pub">Copiar dados</button><button data-act="dl">Baixar</button><button data-act="pw">Senha</button>':''}<button data-act="tog">${editing?'Sair da edição':'Editar'}</button></div>`:wantAdmin?`<div class="adm"><span>${status||'Área do administrador'}</span><input id="pw" type="password" placeholder="Senha" style="max-width:180px"><button class="p" data-act="login">Entrar</button></div>`:''}`;
 }
@@ -133,9 +152,20 @@ const setp=(p,v)=>{const k=p.split('.');let o=S;for(let i=0;i<k.length-1;i++)o=o
 document.addEventListener('change',e=>{const el=e.target,p=el.dataset.p;if(!p||!editing)return;
   let v=el.type==='checkbox'?el.checked:el.value;
   if(/\.(sa|sb)$/.test(p))v=v===''?null:Math.max(0,parseInt(v,10)||0);
+  else if(/\.(k|d|m|j|v|e|rp|rc)$/.test(p))v=Math.max(0,parseInt(v,10)||0);
   setp(p,v);dirty=true;status='';render()});
 document.addEventListener('click',async e=>{const b=e.target.closest('[data-act]');if(!b)return;const a=b.dataset.act;
   if(a==='tog')editing=!editing;
+  const R=S.rank,i=+b.dataset.i,j=+b.dataset.j;
+  if(a==='view'){view=b.dataset.v;scrollTo(0,0)}
+  if(a==='addcamp')R.camps.push({id:'x'+Date.now(),nome:'Camp '+(R.camps.length+1),teams:[]});
+  if(a==='delcamp')R.camps.splice(i,1);
+  if(a==='addteam')R.camps[i].teams.push({n:'',j:0,v:0,e:0,d:0,rp:0,rc:0});
+  if(a==='delteam')R.camps[i].teams.splice(j,1);
+  if(a==='addplayer')R.players.push({n:'',t:'',k:0,d:0,m:0});
+  if(a==='delplayer')R.players.splice(i,1);
+  if(a==='close'){const c=campStats();R.camps=R.camps.filter(x=>x.id!==S.camp.id);R.camps.push({id:S.camp.id,nome:S.camp.nome,teams:Object.entries(c).map(([n,x])=>({n,...x}))});status='Camp lançado no ranking. Copie os dados e publique.'}
+  if(/^(addcamp|delcamp|addteam|delteam|close|addplayer|delplayer)$/.test(a))dirty=true;
   if(a==='add'){S.streams.push({label:'',url:''});dirty=true}
   if(a==='del'){S.streams.splice(+b.dataset.i,1);dirty=true}
   if(a==='login'){const v=document.getElementById('pw').value;if(await sha(v)===(S.pw||DEFAULT_PW)){admin=true;editing=true;status=''}else status='Senha incorreta'}
@@ -145,9 +175,9 @@ document.addEventListener('click',async e=>{const b=e.target.closest('[data-act]
   render()});
 render();
 async function sha(t){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
-async function load(){if(admin||dirty)return;try{const r=await fetch('dados.json?t='+Date.now(),{cache:'no-store'});if(r.ok){const d=await r.json();if(d&&d.matches&&JSON.stringify(d)!==JSON.stringify(S)){S=d;render()}}}catch(e){}}
-addEventListener('hashchange',()=>{wantAdmin=location.hash==='#admin';render()});
-if(wantAdmin){try{const d=localStorage.getItem('mewdraft');if(d){S=JSON.parse(d);dirty=true}}catch(e){}}
+async function load(){if(admin||dirty)return;try{const r=await fetch('dados.json?t='+Date.now(),{cache:'no-store'});if(r.ok){const d=await r.json();if(d&&d.matches&&JSON.stringify(fix(d))!==JSON.stringify(S)){S=d;render()}}}catch(e){}}
+addEventListener('hashchange',()=>{wantAdmin=location.hash==='#admin';if(location.hash==='#ranking')view='rank';render()});
+if(wantAdmin){try{const d=localStorage.getItem('mewdraft');if(d){S=fix(JSON.parse(d));dirty=true}}catch(e){}}
 render();load();setInterval(load,60000);
 </script>
 </body>
