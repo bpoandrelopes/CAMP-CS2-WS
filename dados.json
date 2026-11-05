@@ -140,5 +140,49 @@
    "b": "WS2"
   }
  ],
- "pw": "b2168504eaa083516af1ce92e43cedb68c00ddf0ae2632c7c24f2b6090dd7597"
+ "pw": "b2168504eaa083516af1ce92e43cedb68c00ddf0ae2632c7c24f2b6090dd7597",
+ "rank": {
+  "camps": [],
+  "players": [
+   {
+    "n": "ZyLuuk",
+    "t": "LPM - LOBBY DOS PAU MANDADO",
+    "k": 0,
+    "d": 0,
+    "m": 0
+   },
+   {
+    "n": "Juczera ",
+    "t": "LPM - LOBBY DOS PAU MANDADO",
+    "k": 0,
+    "d": 0,
+    "m": 0
+   },
+   {
+    "n": "Gutera",
+    "t": "LPM - LOBBY DOS PAU MANDADO",
+    "k": 0,
+    "d": 0,
+    "m": 0
+   },
+   {
+    "n": "Cucurella",
+    "t": "LPM - LOBBY DOS PAU MANDADO",
+    "k": 0,
+    "d": 0,
+    "m": 0
+   },
+   {
+    "n": "W1LLZ3R4",
+    "t": "LPM - LOBBY DOS PAU MANDADO",
+    "k": 0,
+    "d": 0,
+    "m": 0
+   }
+  ]
+ },
+ "camp": {
+  "id": "c4",
+  "nome": "4º Camp"
+ }
 }
